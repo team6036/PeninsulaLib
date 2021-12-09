@@ -2,6 +2,7 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import edu.wpi.first.wpilibj.system.plant.DCMotor;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.utils.motor.LazyTalonSRX;
 import frc.robot.utils.motor.MotorSetupUtility;
@@ -10,7 +11,7 @@ public class ElevatorExample extends SubsystemBase {
 
     LazyTalonSRX elevator1, elevator2;
     double targetPosition = getPosition();
-    ElevatorStateSpaceController mController = new ElevatorStateSpaceController();
+    ElevatorStateSpaceController mController;
 
     public ElevatorExample() {
 
@@ -30,6 +31,9 @@ public class ElevatorExample extends SubsystemBase {
                 elevator1.getDeviceID()
         );
 
+        mController = new ElevatorStateSpaceController(elevator1);
+        mController.reset(getPosition());
+
     }
 
     public void setPosition(int position) {
@@ -41,7 +45,7 @@ public class ElevatorExample extends SubsystemBase {
     }
 
     public void setStateSpacePosition() {
-        mController.setPosition(targetPosition);
+        mController.setPosition(targetPosition, getPosition());
     }
 
     public double getPosition(){

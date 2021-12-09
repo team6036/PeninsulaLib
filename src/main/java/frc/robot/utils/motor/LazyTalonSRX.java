@@ -1,9 +1,9 @@
 package frc.robot.utils.motor;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-public class LazyTalonSRX extends TalonSRX {
+public class LazyTalonSRX extends WPI_TalonSRX {
     double mLastSet = Double.NaN;
     ControlMode mLastControl = null;
     /**
