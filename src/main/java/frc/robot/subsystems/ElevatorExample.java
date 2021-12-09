@@ -10,6 +10,7 @@ public class ElevatorExample extends SubsystemBase {
 
     LazyTalonSRX elevator1, elevator2;
     double targetPosition = getPosition();
+    ElevatorStateSpaceController mController = new ElevatorStateSpaceController();
 
     public ElevatorExample() {
 
@@ -37,6 +38,10 @@ public class ElevatorExample extends SubsystemBase {
 
     public void setEncoderTickPosition() {
         elevator1.set(ControlMode.Position, targetPosition);
+    }
+
+    public void setStateSpacePosition() {
+        mController.setPosition(targetPosition);
     }
 
     public double getPosition(){
