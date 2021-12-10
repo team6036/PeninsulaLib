@@ -1,35 +1,24 @@
-package frc.robot.subsystems;
+package StateSpaceTest;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.FeedbackDevice;
-import edu.wpi.first.wpilibj.system.plant.DCMotor;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.utils.motor.LazyTalonSRX;
-import frc.robot.utils.motor.MotorSetupUtility;
+
+import java.io.IOException;
 
 public class ElevatorExample extends SubsystemBase {
 
-    LazyTalonSRX elevator1, elevator2;
+    WPI_TalonSRX elevator1, elevator2;
     double targetPosition = getPosition();
     ElevatorStateSpaceController mController;
 
-    public ElevatorExample() {
+    public ElevatorExample() throws IOException {
 
-        elevator1 = MotorSetupUtility.lazyTalonSRX(
-                0,
-                FeedbackDevice.CTRE_MagEncoder_Relative,
-                0.125,
-                0.0,
-                0.0,
-                10,
-                false
-        );
+        elevator1 = new WPI_TalonSRX(1);
+//        talon.configSelectedFeedbackSensor(CTRE_, 0, timeoutMillis);
 
-        elevator2 = MotorSetupUtility.slaveLazyTalonSRX(
-                1,
-                true,
-                elevator1.getDeviceID()
-        );
+        elevator2 = new WPI_TalonSRX(0);
+        elevator2.set(ControlMode.Follower, 1);
 
         mController = new ElevatorStateSpaceController();
         mController.reset(getPosition());

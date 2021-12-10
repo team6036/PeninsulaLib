@@ -2,6 +2,12 @@ plugins {
     id "java"
     id "edu.wpi.first.GradleRIO" version "2021.3.1"
 }
+test {
+    useJUnit()
+    testLogging {
+        events "passed", "skipped", "failed", "standardOut", "standardError"
+    }
+}
 
 sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
@@ -55,7 +61,16 @@ dependencies {
 
     // implementation project(':Common')
 
-    testImplementation 'junit:junit:4.12'
+    implementation 'junit:junit:4.13'
+    testImplementation 'junit:junit:4.13'
+//    def junitJupiter = { name ->
+//        create group: 'org.junit.jupiter', name: name, version: '5.6.1'
+//    }
+//    implementation junitJupiter("junit-jupiter-api")
+//
+//    testImplementation(junitJupiter("junit-jupiter-api"))
+//    testImplementation(junitJupiter("junit-jupiter-engine"))
+//    testImplementation(junitJupiter("junit-jupiter-params"))
 
     // Enable simulation gui support. Must check the box in vscode to enable support
     // upon debugging
