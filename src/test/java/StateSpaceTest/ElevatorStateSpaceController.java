@@ -12,10 +12,6 @@ import edu.wpi.first.wpiutil.math.Nat;
 import edu.wpi.first.wpiutil.math.VecBuilder;
 import edu.wpi.first.wpiutil.math.numbers.N1;
 import edu.wpi.first.wpiutil.math.numbers.N2;
-//import org.junit.jupiter.api.BeforeAll;
-//import org.junit.jupiter.api.BeforeEach;
-//import org.junit.jupiter.api.Test;
-
 
 public class ElevatorStateSpaceController {
 
@@ -86,8 +82,8 @@ public class ElevatorStateSpaceController {
 
             double positionEpsilon, double velocityEpsilon, double maxVoltageOutput,
 
-            double maxVel, double maxAcc, WPI_TalonSRX srx
-    ){
+            double maxVel, double maxAcc, WPI_TalonSRX srx)
+    {
 
         plant = LinearSystemId.createElevatorSystem(motor, massKg, radiusMeters, G);
 
